@@ -1,8 +1,6 @@
 import React, { useState, useContext } from "react";
 import { userContext } from "../Context/Context";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-function AddContacts() {
+function EditContact({ editUser }) {
   const { user, setUser } = useContext(userContext);
   const [users, setuser] = useState({
     id: "",
@@ -12,6 +10,7 @@ function AddContacts() {
     contact_type: "",
     gen: "",
   });
+  const editing = editUser[0];
   const handleSubmit = (e) => {
     e.preventDefault();
     setUser(
@@ -27,14 +26,14 @@ function AddContacts() {
       contact_type: "",
       gen: "",
     });
-    toast.success("Contact added", {
-      position: "bottom-center",
-      hideProgressBar: true,
-      autoClose: 1000,
-      theme: "colored",
-      pauseOnHover: false,
-      closeOnClick: false,
-    });
+    // toast.success("Contact added", {
+    //   position: "bottom-center",
+    //   hideProgressBar: true,
+    //   autoClose: 1000,
+    //   theme: "colored",
+    //   pauseOnHover: false,
+    //   closeOnClick: false,
+    // });
   };
   const handleInput = (e) => {
     setuser({ ...users, [e.target.name]: e.target.value });
@@ -43,8 +42,7 @@ function AddContacts() {
   };
   return (
     <>
-      <ToastContainer />
-      <form className="modal mt-5" id="exampleModal" onSubmit={handleSubmit}>
+      <form className="modal mt-5" id="exampleModal1" onSubmit={handleSubmit}>
         <div className="modal-dialog" role="document">
           <div className="modal-content">
             <div className="modal-header">
@@ -70,7 +68,7 @@ function AddContacts() {
                   onChange={handleInput}
                   placeholder="Enter the name"
                   required
-                  value={users.name}
+                  // value={editser.name}
                 />
                 <input
                   name="email"
@@ -199,4 +197,4 @@ function AddContacts() {
   );
 }
 
-export default AddContacts;
+export default EditContact;
